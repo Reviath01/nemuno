@@ -19,6 +19,7 @@ if (category == 'moderation'){
     .addFields(
         { name: '-ban {User} {Reason}', value: 'Ban user from your guild!' },
         { name: '-mute {User} {Duration} {Reason}', value: 'shut the fuck up command' },
+        { name: '-kick {User} {Reason}', value: 'Kick user from your guild!' },
     )
     .setColor(0xff0000)
     message.channel.send(moderationembed)
