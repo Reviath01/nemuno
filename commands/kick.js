@@ -13,10 +13,9 @@ exports.run = async(bot, message, args, connection) => {
     if (!message.guild.member(user).kickable) return message.reply(`I don't have permission to kick this user`);
     
     console.log(user.user.tag);
-    await user.kick({reason: reason});
     
     await message.channel.send(`<@${user.id}> \`(${user.tag})\` Has been kicked with reason: \`${reason}\` \nModerator: <@${message.author.id}>`);
-
+   await user.kick({reason: reason});
     connection.query("INSERT INTO punishments (type,guild,user,admin,duration,reason,channel) VALUES ('Kick', ?, ?, ?,'-', ?, ?)", [message.guild.id, user.id, message.member.id, reason, message.channel.id], function (err, result) {
       if (err) throw err;
       console.log('successfully added to sql');
