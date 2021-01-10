@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = async(bot, message, args, connection) => {
+exports.run = async(bot, message, args) => {
     if (!message.member.hasPermission('KICK_MEMBERS')) return [message.channel.send(`You don't have permission`)];
 
     let user = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
@@ -12,15 +12,9 @@ exports.run = async(bot, message, args, connection) => {
     };
     if (!message.guild.member(user).kickable) return message.reply(`I don't have permission to kick this user`);
     
-    console.log(user.user.tag);
     
-    await message.channel.send(`<@${user.id}> \`(${user.tag})\` Has been kicked with reason: \`${reason}\` \nModerator: <@${message.author.id}>`);
-   await user.kick({reason: reason});
-    connection.query("INSERT INTO punishments (type,guild,user,admin,duration,reason,channel) VALUES ('Kick', ?, ?, ?,'-', ?, ?)", [message.guild.id, user.id, message.member.id, reason, message.channel.id], function (err, result) {
-      if (err) throw err;
-      console.log('successfully added to sql');
-    });
-
+    await message.channel.send(`<@${user.id}> \`(${user.user.tag})\` Has been kicked with reason: \`${reason}\` \nModerator: <@${message.author.id}>`);
+    await user.kick({reason: reason});
 };
 
 module.exports.help = {
