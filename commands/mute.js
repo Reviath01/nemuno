@@ -6,7 +6,7 @@ exports.run = async(client, message, args) => {
     let spammer = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
 
     if(!spammer) return message.channel.send("Please specify user to perform action upon.");
-    if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Lacking permission to perform such action.");
+    if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply("Lacking permission to perform such action.");
     let role = message.guild.roles.cache.find(r => r.name === "Muted");
     
     if(!role){
@@ -29,7 +29,7 @@ exports.run = async(client, message, args) => {
     }
     
     if (spammer.roles.cache.has(role.id)) return message.channel.send('User is already muted.');
-    let time = args[1];
+    let time = parseInt(args[1]);
     if(!time) {
       time = "24h"
     };
