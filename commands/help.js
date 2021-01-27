@@ -8,7 +8,7 @@ if (!category){
 .setTitle('Nemuno Help Menu!')
 .addFields(
     { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \nType `-help moderation` for details' },
-    { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \nType `-help fun` for details' },
+    { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \nType `-help fun` for details' },
     { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \nType `-help user` for details' },
 )
 .setColor(0x2ae82e)
@@ -37,6 +37,7 @@ if (category == 'fun'){
         { name: '<a:butterfly:797752340014694410> -avatar {User}', value: 'Show\'s the avatar' },
         { name: '<a:butterfly:797752340014694410> -kiss {User}', value: 'Kiss\'es the user that you mentioned' },
         { name: '<a:butterfly:797752340014694410> -hug {User}', value: 'You hug the user that you mentioned' },
+        { name: '<a:butterfly:797752340014694410> -rank {User}', value: 'Show\'s rank of the user' },
     )
     .setColor(0xffa900)
     .setThumbnail(client.user.displayAvatarURL())
