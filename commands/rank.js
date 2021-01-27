@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
 
         if(u.bot === true) {
                 const embed = new Discord.MessageEmbed()
-                        .setDescription("Botların seviyesi bulunmamaktadır!")
+                        .setDescription("No rank for bots!")
                         .setColor("RANDOM")
                 message.channel.send(embed)
                 return
@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
   var Canvas = require('canvas')
         var canvas = Canvas.createCanvas(750, 240)
         var ctx = canvas.getContext('2d');
-        const avatarURL = u.displayAvatarURL
+        const avatarURL = u.displayAvatarURL()
         const { body } = await request.get(avatarURL);
         const avatar = await Canvas.loadImage(body);
   
@@ -83,5 +83,5 @@ exports.run = async (client, message, args) => {
         ctx.arc(43 + 67, 67 + 67, 67, 0, 2 * Math.PI, false);
     ctx.clip();
     ctx.drawImage(avatar, 43, 67, 135, 130);
-        message.channel.send({files:[{attachment:canvas.toBuffer(),name:"levelup.png"}]})
+        message.channel.send({files:[{attachment:canvas.toBuffer(),name:"level.png"}]})
 };
