@@ -85,3 +85,7 @@ exports.run = async (client, message, args) => {
     ctx.drawImage(avatar, 43, 67, 135, 130);
         message.channel.send({files:[{attachment:canvas.toBuffer(),name:"level.png"}]})
 };
+module.exports.help = {
+    name: 'rank',
+    aliases: [`xp`]
+};
