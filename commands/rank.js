@@ -15,20 +15,21 @@ exports.run = async (client, message, args) => {
                 message.channel.send(embed)
                 return
         }
-let xp = db.get(`xp_${message.author.id + message.guild.id}`)
+let xp = db.get(`xp_${u.id + message.guild.id}`)
 if(xp === null) {
 	xp = "0"
 }
-let level = db.get(`level_${message.author.id + message.guild.id}`)
+let level = db.get(`level_${u.id + message.guild.id}`)
 if(level === null) {
 	level = "0"
 }
 const embed = new Discord.MessageEmbed()
-.setAuthor(message.author.username, message.author.avatarURL())
+.setAuthor(u.username, u.avatarURL())
 .addField(`Your level is:`,`${level}`)
 .addField(`Your xp is:`, `${xp}`)
 .setFooter('Do you like me -invite')
 .setColor("RANDOM")
+.setFooter(`Command used by: ${message.author.username}`)
 message.channel.send(embed);
 };
 module.exports.help = {
