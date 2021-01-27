@@ -3,6 +3,15 @@ module.exports = {
 
     message: (client, settings, Discord) => {
         client.on('message', async message => {
+              if (message.channel.type === "dm") return;
+  if(message.author.bot) return;  
+  if (message.content.length > 7) {
+    db.add(`xp_${message.author.id + message.guild.id}`, 3)
+};
+  if (db.fetch(`xp_${message.author.id + message.guild.id}`) > 150) {  
+    db.add(`level_${message.author.id + message.guild.id}`, 1)
+    db.delete(`xp_${message.author.id + message.guild.id}`)
+  };
             if (message.content === '<@!797421915152449537>') {
                 const tagged = new Discord.MessageEmbed()
                 .setTitle('Nemuno')
