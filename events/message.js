@@ -3,9 +3,6 @@ module.exports = {
 
     message: (client, settings, Discord) => {
         client.on('message', async message => {
-			message.mentions.users.forEach((user) => {
-let afkreason = db.get(user.id + '.afkreason')
-})
               if (message.channel.type === "dm") return;
   if(message.author.bot) return;  
   if (message.content.length > 7) {
@@ -31,10 +28,11 @@ let afkreason = db.get(user.id + '.afkreason')
    message.content.includes('@everyone')
   )
    return false;
-  if (db.has(user.id + '.afk'))
+   let afkreason = db.get(user.id + '.afkreason')
    if(afkreason === null){
        afkreason = "AFK"
    }
+  if (db.has(user.id + '.afk'))
    message.channel.send(`The user is AFK with reason: ${afkreason}`);
  });
   if (db.has(message.author.id + '.afk')) {
