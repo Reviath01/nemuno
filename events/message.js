@@ -11,6 +11,7 @@ module.exports = {
   if (db.fetch(`xp_${message.author.id + message.guild.id}`) > 150) {  
     db.add(`level_${message.author.id + message.guild.id}`, 1)
     db.delete(`xp_${message.author.id + message.guild.id}`)
+message.channel.send(`<@${message.author.id}> is now ${db.get(`level_${message.author.id + message.guild.id}`)} level :tada:`)
   };
             if (message.content === '<@!797421915152449537>') {
                 const tagged = new Discord.MessageEmbed()
