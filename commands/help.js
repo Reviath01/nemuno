@@ -8,7 +8,7 @@ if (!category){
 .setTitle('Nemuno Help Menu!')
 .addFields(
     { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \nType `-help moderation` for details' },
-    { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \nType `-help fun` for details' },
+    { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \n-play {Link or name} \n-skip \nType `-help fun` for details' },
     { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \nType `-help user` for details' },
 )
 .setColor(0x2ae82e)
@@ -23,7 +23,6 @@ if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -mute {User} {Duration} {Reason}', value: 'shut the fuck up command' },
         { name: '<a:developer:786112416567263262> -kick {User} {Reason}', value: 'Kick user from your guild!' },
         { name: '<a:developer:786112416567263262> -unmute {User}', value: 'Unmute\'s the user' },
-        
         { name: '<a:developer:786112416567263262> -clear {Amount}', value: 'Delete\'s messages' },
     )
     .setThumbnail(client.user.displayAvatarURL())
@@ -38,6 +37,8 @@ if (category == 'fun'){
         { name: '<a:butterfly:797752340014694410> -kiss {User}', value: 'Kiss\'es the user that you mentioned' },
         { name: '<a:butterfly:797752340014694410> -hug {User}', value: 'You hug the user that you mentioned' },
         { name: '<a:butterfly:797752340014694410> -rank {User}', value: 'Show\'s rank of the user' },
+		 { name: '<a:butterfly:797752340014694410> -play {Link or name}', value: 'Play\'s music' },
+         { name: '<a:butterfly:797752340014694410> -skip', value: 'Skip\'s the current music' },
     )
     .setColor(0xffa900)
     .setThumbnail(client.user.displayAvatarURL())
