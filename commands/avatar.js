@@ -1,11 +1,12 @@
 const Discord = require('discord.js');
 
-exports.run = async(bot, message, args) => {
+exports.run = async(client, message, args) => {
     
     let member = message.mentions.users.first() || message.author
-message.channel.send(new Discord.MessageEmbed()
+const embed = new Discord.MessageEmbed()
 .setImage(member.avatarURL({dynamic : true, size: 4096}))
-.setColor("RANDOM"));
+.setColor("RANDOM")
+message.channel.send(embed);
 };
 
 module.exports.help = {
