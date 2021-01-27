@@ -8,11 +8,16 @@ const message = require('./events/message');
 const settings = require('./settings.json');
 const fs = require('fs');
 const db = require('quick.db')
+const ytdl = require('discord-ytdl-core');
+const YouTube = require('simple-youtube-api');
+require('./functions')(client, ytdl, settings);
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 ready.ready(client);
 message.message(client, settings, Discord);
+client.youtube = new YouTube(settings.api); 
+client.queue = new Map();
 
 fs.readdir("./commands/", (err, files) => {
     if (err) console.error(err);

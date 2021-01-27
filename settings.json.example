@@ -1,5 +1,6 @@
 {
     "prefix": "PREFİX",
     "author": "AUTHOR",
-    "token": "TOKEN"
+    "token": "TOKEN",
+    "api": "API TOKEN"
 }
