@@ -15,75 +15,21 @@ exports.run = async (client, message, args) => {
                 message.channel.send(embed)
                 return
         }
-  
-  var g = "50"
-  
-  var Canvas = require('canvas')
-        var canvas = Canvas.createCanvas(750, 240)
-        var ctx = canvas.getContext('2d');
-        const avatarURL = u.displayAvatarURL()
-        const { body } = await request.get(avatarURL);
-        const avatar = await Canvas.loadImage(body);
-  
-  ctx.fillStyle = "rgba(0, 0, 0, 0."+g+")";
-  ctx.fill()
-        ctx.fillRect(25, 20, 700, 200)  
-  
-  
-  
-        ctx.fillStyle = "rgba(0, 0, 0, 0.30)";
-        ctx.fill()
-        ctx.fillRect(0, 0, 750, 240)
-  
-        var re = "db3b3b"
-  
-  var xp = db.fetch(`xp_${u.id + message.guild.id}`);
-  var lvl = db.fetch(`level_${u.id + message.guild.id}`);  
-  
-        let rank = ''
-        const sorted = message.guild.members.filter(u => !u.user.bot).array().sort((a, b) => { return db.fetch(`level_${b.user.id + message.guild.id}`) - db.fetch(`level_${a.user.id + message.guild.id}`) });
-        const top10 = sorted.splice(0, message.guild.members.size)
-        const mappedID = top10.map(s => s.user.id);
-        for(var i = 0; i < message.guild.members.size; i++) {
-                if(mappedID[i] === u.id) {
-                        rank += `${i + 1}`
-                }
-        }
-
-        var de = 1.6
-        ctx.beginPath()
-        ctx.fillStyle = "#999999";
-        ctx.arc(257 + 18.5, 125.5 + 18.5 + 36.25, 18.5, 1.5 * Math.PI, 0.5 * Math.PI, true);
-        ctx.fill();
-        ctx.fillRect(257 + 18.5, 125.5 + 36.15, 250 * de, 37.5);
-        ctx.arc(257 + 18.5 + 250 * de, 125.5 + 18.5 + 36.25, 18.75, 1.5 * Math.PI, 0.5 * Math.PI, false);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.fillStyle = `#${re}`;
-        ctx.arc(257 + 18.5, 125.5 + 18.5 + 36.25, 18.5, 1.5 * Math.PI, 0.5 * Math.PI, true);
-        ctx.fill();
-        ctx.fillRect(257 + 18.5, 125.5 + 36.25, xp * de, 37.5);
-        ctx.arc(257 + 18.5 + xp * de, 125.5 + 18.5 + 36.25, 18.75, 1.5 * Math.PI, 0.5 * Math.PI, false);
-        ctx.fill();
-        ctx.fillStyle = `#${re}`;
-        ctx.font = '28px Impact';
-        ctx.textAlign = "right";
-        ctx.fillText(`Rank #${rank} | Level ${lvl || 0}`, 670, 70);
-        ctx.font = '20px Impact';
-        ctx.textAlign = "right";
-        ctx.fillText(`${xp || 0} / 150 XP`, 670, 100);
-  ctx.fillStyle = `#fcfdff`;
-  ctx.font = 'bold 28px Impact';
-        ctx.textAlign = "left";
-        ctx.fillText(`${u.tag}`, 195, 150)
-        ctx.beginPath();
-        ctx.lineWidth = 8;
-  ctx.fill()
-        ctx.lineWidth = 8;
-        ctx.arc(43 + 67, 67 + 67, 67, 0, 2 * Math.PI, false);
-    ctx.clip();
-    ctx.drawImage(avatar, 43, 67, 135, 130);
-        message.channel.send({files:[{attachment:canvas.toBuffer(),name:"level.png"}]})
+let xp = db.get(`xp_${message.author.id + message.guild.id}`)
+if(xp === null) {
+	xp = "0"
+}
+let level = db.get(`level_${message.author.id + message.guild.id}`)
+if(level === null) {
+	level = "0"
+}
+const embed = new Discord.MessageEmbed()
+.setAuthor(message.author.username, message.author.avatarURL())
+.addField(`Your level is:`,`${level}`)
+.addField(`Your xp is:`, `${xp}`)
+.setFooter('Do you like me `-invite`')
+.setColor("RANDOM")
+message.channel.send(embed);
 };
 module.exports.help = {
     name: 'rank',
