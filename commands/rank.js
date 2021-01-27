@@ -27,7 +27,7 @@ const embed = new Discord.MessageEmbed()
 .setAuthor(message.author.username, message.author.avatarURL())
 .addField(`Your level is:`,`${level}`)
 .addField(`Your xp is:`, `${xp}`)
-.setFooter('Do you like me `-invite`')
+.setFooter('Do you like me -invite')
 .setColor("RANDOM")
 message.channel.send(embed);
 };
