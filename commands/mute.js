@@ -30,10 +30,11 @@ exports.run = async(client, message, args) => {
     
     if (spammer.roles.cache.has(role.id)) return message.channel.send('User is already muted.');
     let time = parseInt(args[1]);
+    let reason = args.slice(2).join(' ');
     if(!time) {
       time = "24h"
+      reason = args.slice(1).join(' ');
     };
-    let reason = args.slice(2).join(' ');
     if(!reason) {
       reason = "Unspecified"
     }
