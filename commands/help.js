@@ -9,7 +9,7 @@ if (!category){
 .addFields(
     { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \nType `-help moderation` for details' },
     { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \n-play {Link or name} \n-skip \nType `-help fun` for details' },
-    { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \nType `-help user` for details' },
+    { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \n-roles \nType `-help user` for details' },
 )
 .setColor(0x2ae82e)
 .setThumbnail(client.user.displayAvatarURL())
@@ -53,6 +53,7 @@ if (category == 'user'){
         { name: '<a:FeelsEveryone:721199565260193854> -whois', value: 'Give\'s user information' },
         { name: '<a:FeelsEveryone:721199565260193854> -server-info', value: 'Give\'s information about server' },
         { name: '<a:FeelsEveryone:721199565260193854> -afk', value: 'Set you as AFK' },
+		{ name: '<a:FeelsEveryone:721199565260193854> -roles', value: 'Show\'s role list' }
     )
     .setColor(0x5a99ff)
     .setThumbnail(client.user.displayAvatarURL());
