@@ -3,6 +3,20 @@ module.exports = {
 
     message: (client, settings, Discord) => {
         client.on('message', async message => {
+			let linkblock = db.get(`link_${message.guild.id}`)
+			if(linkblock == "deny") {
+				const reklam = ["https://","http://","discord.gg"];
+              if (reklam.some(word => message.content.toLowerCase().includes(word))) {
+                try {
+                  if (!message.member.hasPermission("ADMINISTRATOR")) {                                       
+                    message.channel.send(`<@${message.author.id}> you are not allowed to send links on this server!`).then(message => message.delete(10000));
+                  message.delete();
+				  }              
+                } catch(err) {
+                  console.log(err);
+                }
+              }
+			}
               if (message.channel.type === "dm") return;
   if(message.author.bot) return;  
   if (message.content.length > 7) {
