@@ -48,11 +48,16 @@ message.channel.send(`<@${message.author.id}> is now ${db.get(`level_${message.a
        afkreason = "AFK"
    }
   if (db.has(user.id + '.afk'))
-   message.channel.send(`The user is AFK with reason: ${afkreason}`);
+  const afkembed = new Discord.MessageEmbed()
+  .setColor('RANDOM')
+  .setDescription(`This user is AFK with reason ${afkreason}`)
+  .setAuthor(message.author.username, message.author.avatarURL())
+   message.channel.send(afkembed);
  });
   if (db.has(message.author.id + '.afk')) {
   message.channel.send(`Welcome back <@${message.author.id}> I removed your AFK.`);
   db.delete(message.author.id + '.afk');
+  db.delete(message.author.id + '.afkreason');
  }
             if(message.author.id === client.user.id) return; 
             if(!message.guild) return client.channels.cache.get('790640302452375562').send(`<@${message.author.id}>\`(${message.author.tag})\` sent a dm to me \nthe message is \`${message}\``);
