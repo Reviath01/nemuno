@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db');
 
 exports.run = async (client, message, args) => {
-  let u = message.guild.member(message.mentions.users.first() || message.author || message.guild.members.cache.get(args[0]));
+  let u = message.mentions.users.first() || message.author;
 
         if(u.bot === true) {
                 const embed = new Discord.MessageEmbed()
