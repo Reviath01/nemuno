@@ -1,12 +1,8 @@
 const Discord = require('discord.js');
-const request = require('node-superfetch');
 const db = require('quick.db');
-const { stripIndents } = require('common-tags');
-const snekfetch = require("snekfetch");
 
 exports.run = async (client, message, args) => {
-  
-  let u = message.mentions.users.first() || message.author;
+  let u = message.guild.member(message.mentions.users.first() || message.author || message.guild.members.cache.get(args[0]));
 
         if(u.bot === true) {
                 const embed = new Discord.MessageEmbed()
@@ -26,7 +22,7 @@ if(level === null) {
 const embed = new Discord.MessageEmbed()
 .setAuthor(u.username, u.avatarURL())
 .addField(`Your level is:`,`${level}`)
-.addField(`Your xp is:`, `${xp}`)
+.addField(`Your xp is:`, `${xp}/150`)
 .setFooter('Do you like me -invite')
 .setColor("RANDOM")
 .setFooter(`Command used by: ${message.author.username}`)

@@ -4,7 +4,7 @@ const settings = require('../settings.json');
 const moment = require('moment')
 
 exports.run = (client, message , args) => {
-  let user = message.guild.member(message.mentions.users.first()) || message.guild.member(args[0]);
+  let user = message.guild.member(message.mentions.users.first() || message.author || message.guild.members.cache.get(args[0])););
   if(!user) return message.channel.send('No users to whois!')
   client.users.cache.get(user);
     const embed = new Discord.MessageEmbed()
@@ -18,7 +18,6 @@ exports.run = (client, message , args) => {
     .addField('Last Message:', `${user.lastMessage}`);
   return message.channel.send(embed);
 };
-
 
   module.exports.help = {
     name: 'whois',
