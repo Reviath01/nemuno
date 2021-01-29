@@ -48,11 +48,7 @@ message.channel.send(`<@${message.author.id}> is now ${db.get(`level_${message.a
        afkreason = "AFK"
    }
   if (db.has(user.id + '.afk'))
-  const afkembed = new Discord.MessageEmbed()
-  .setColor('RANDOM')
-  .setDescription(`This user is AFK with reason ${afkreason}`)
-  .setAuthor(message.author.username, message.author.avatarURL())
-   message.channel.send(afkembed);
+   message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setDescription(`This user is AFK with reason ${afkreason}`).setAuthor(message.author.username, message.author.avatarURL()));
  });
   if (db.has(message.author.id + '.afk')) {
   message.channel.send(`Welcome back <@${message.author.id}> I removed your AFK.`);
