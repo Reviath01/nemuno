@@ -7,9 +7,13 @@ exports.run = async (client, message, args) => {
    afk = "AFK"
  }
  db.set(message.author.id + '.afkreason', `${afk}`)
- message.channel.send(`<@${message.author.id}> You are now AFK with reason: ${afk}`)
+ const afkembed = new Discord.MessageEmbed()
+ .setAuthor(message.author.username, message.author.avatarURL())
+ .setDescription(`<@${message.author.id}> You are now AFK with reason: \`${afk}\``)
+ .setColor('RANDOM')
+ message.channel.send(afkembed)
 }
       module.exports.help = {
         name: 'afk',
-        aliases: []
+        aliases: ['setafk','set-afk']
      };
