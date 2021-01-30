@@ -20,7 +20,7 @@ if (category == 'moderation'){
     .setTitle('Nemuno Moderation Menu!')
     .addFields(
         { name: '<a:developer:786112416567263262> -ban {User} {Reason}', value: 'Ban user from your guild!' },
-        { name: '<a:developer:786112416567263262> -mute {User} {Duration} {Reason}', value: 'shut the fuck up command' },
+        { name: '<a:developer:786112416567263262> -mute {User} {Duration} {Reason}', value: 'Give\'s muted role to user' },
         { name: '<a:developer:786112416567263262> -kick {User} {Reason}', value: 'Kick user from your guild!' },
         { name: '<a:developer:786112416567263262> -unmute {User}', value: 'Unmute\'s the user' },
         { name: '<a:developer:786112416567263262> -clear {Amount}', value: 'Delete\'s messages' },
