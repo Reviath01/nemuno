@@ -7,7 +7,7 @@ if (!category){
     const embedhelp = new Discord.MessageEmbed()
 .setTitle('Nemuno Help Menu!')
 .addFields(
-    { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \nType `-help moderation` for details' },
+    { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \n-link {Allow or deny} \nType `-help moderation` for details' },
     { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \n-play {Link or name} \n-skip \nType `-help fun` for details' },
     { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \n-roles \nType `-help user` for details' },
 )
@@ -24,6 +24,7 @@ if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -kick {User} {Reason}', value: 'Kick user from your guild!' },
         { name: '<a:developer:786112416567263262> -unmute {User}', value: 'Unmute\'s the user' },
         { name: '<a:developer:786112416567263262> -clear {Amount}', value: 'Delete\'s messages' },
+        { name: '<a:developer:786112416567263262> -link {Allow or deny}', value: 'Deletes links' },
     )
     .setThumbnail(client.user.displayAvatarURL())
     .setColor(0xff0000)
