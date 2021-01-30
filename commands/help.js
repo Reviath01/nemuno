@@ -40,6 +40,7 @@ if (category == 'fun'){
         { name: '<a:butterfly:797752340014694410> -rank {User}', value: 'Show\'s rank of the user' },
 		 { name: '<a:butterfly:797752340014694410> -play {Link or name}', value: 'Play\'s music' },
          { name: '<a:butterfly:797752340014694410> -skip', value: 'Skip\'s the current music' },
+         { name: '<a:butterfly:797752340014694410> -touhou', value: 'Send\'s random touhou image' },
     )
     .setColor(0xffa900)
     .setThumbnail(client.user.displayAvatarURL())

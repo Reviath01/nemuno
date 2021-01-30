@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 const ms = require("ms");
 
-exports.run = async(client, message, args, connection) => {
+exports.run = async(client, message, args) => {
 
     if (message.member.hasPermission("MANAGE_ROLES")){
 
