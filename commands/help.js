@@ -8,7 +8,7 @@ if (!category){
 .setTitle('Nemuno Help Menu!')
 .addFields(
     { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \n-link {Allow or deny} \nType `-help moderation` for details' },
-    { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \n-play {Link or name} \n-skip \nType `-help fun` for details' },
+    { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \n-play {Link or name} \n-skip \n-touhou \nType `-help fun` for details' },
     { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \n-roles \nType `-help user` for details' },
 )
 .setColor(0x2ae82e)
