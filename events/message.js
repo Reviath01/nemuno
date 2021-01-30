@@ -43,17 +43,17 @@ message.channel.send(`<@${message.author.id}> is now ${db.get(`level_${message.a
    message.content.includes('@everyone')
   )
    return false;
-   let afkreason = db.get(user.id + '.afkreason')
+   let afkreason = db.get(user.id + message.guild.id + '.afkreason')
    if(afkreason === null){
        afkreason = "AFK"
    }
-  if (db.has(user.id + '.afk'))
+  if (db.has(user.id + message.guild.id + '.afk'))
    message.channel.send(new Discord.MessageEmbed().setColor('RANDOM').setDescription(`This user is AFK with reason ${afkreason}`).setAuthor(message.author.username, message.author.avatarURL()));
  });
-  if (db.has(message.author.id + '.afk')) {
+  if (db.has(message.author.id + message.guild.id + '.afk')) {
   message.channel.send(`Welcome back <@${message.author.id}> I removed your AFK.`);
-  db.delete(message.author.id + '.afk');
-  db.delete(message.author.id + '.afkreason');
+  db.delete(message.author.id + message.guild.id + '.afk');
+  db.delete(message.author.id + message.guild.id + '.afkreason');
  }
             if(message.author.id === client.user.id) return; 
             if(!message.guild) return client.channels.cache.get('790640302452375562').send(`<@${message.author.id}>\`(${message.author.tag})\` sent a dm to me \nthe message is \`${message}\``);
