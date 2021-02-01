@@ -23,54 +23,54 @@ module.exports = {
     db.add(`xp_${message.author.id + message.guild.id}`, 3)
 };
 let lvl = db.get(`level_${message.author.id + message.guild.id}`)
-let lvlup = "1999";
+let lvlup = 1999;
 if(lvl == null) {
-  lvlup = "149"
+  lvlup = 149
 }
 if(lvl == "1") {
-  lvlup = "149"
+  lvlup = 149
 }
 if(lvl == "2") {
-  lvlup = "199"
+  lvlup = 199
 }
 if(lvl == "3") {
-  lvlup = "249"
+  lvlup = 249
 }
 if(lvl == "4") {
-  lvlup = "299"
+  lvlup = 299
 }
 if(lvl == "5") {
-  lvlup = "349"
+  lvlup = 349
 }
 if(lvl == "6") {
-  lvlup = "399"
+  lvlup = 399
 }
 if(lvl == "7") {
-  lvlup = "459"
+  lvlup = 459
 }
 if(lvl == "8") {
-  lvlup = "499"
+  lvlup = 499
 }
 if(lvl == "9") {
-  lvlup = "599"
+  lvlup = 599
 }
 if(lvl == "10") {
-  lvlup = "699"
+  lvlup = 699
 }
 if(lvl == "11") {
-  lvlup = "799"
+  lvlup = 799
 }
 if(lvl == "12") {
-  lvlup = "899"
+  lvlup = 899
 }
 if(lvl == "13") {
-  lvlup = "999"
+  lvlup = 999
 }
 if(lvl == "14") {
-  lvlup = "1099"
+  lvlup = 1099
 }
 if(lvl == "15") {
-  lvlup = "1199"
+  lvlup = 1199
 }
 let lastxp = db.set(`lastxp_${message.author.id + message.guild.id}`, lvlup)
 
