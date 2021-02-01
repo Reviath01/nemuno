@@ -19,10 +19,11 @@ let level = db.get(`level_${u.id + message.guild.id}`)
 if(level === null) {
 	level = "0"
 }
+let lastxp = db.get(`lastxp_${message.author.id + message.guild.id}`)
 const embed = new Discord.MessageEmbed()
 .setAuthor(u.username, u.avatarURL())
 .addField(`Your level is:`,`${level}`)
-.addField(`Your xp is:`, `${xp}/150`)
+.addField(`Your xp is:`, `${xp}/${lastxp}`)
 .setFooter('Do you like me -invite')
 .setColor("RANDOM")
 .setFooter(`Command used by: ${message.author.username}`)

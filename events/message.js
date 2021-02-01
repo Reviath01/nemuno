@@ -22,7 +22,60 @@ module.exports = {
   if (message.content.length > 7) {
     db.add(`xp_${message.author.id + message.guild.id}`, 3)
 };
-  if (db.fetch(`xp_${message.author.id + message.guild.id}`) > 149) {  
+let lvl = db.get(`level_${message.author.id + message.guild.id}`)
+let lvlup = "1999";
+if(lvl == null) {
+  lvlup = "149"
+}
+if(lvl == "1") {
+  lvlup = "149"
+}
+if(lvl == "2") {
+  lvlup = "199"
+}
+if(lvl == "3") {
+  lvlup = "249"
+}
+if(lvl == "4") {
+  lvlup = "299"
+}
+if(lvl == "5") {
+  lvlup = "349"
+}
+if(lvl == "6") {
+  lvlup = "399"
+}
+if(lvl == "7") {
+  lvlup = "459"
+}
+if(lvl == "8") {
+  lvlup = "499"
+}
+if(lvl == "9") {
+  lvlup = "599"
+}
+if(lvl == "10") {
+  lvlup = "699"
+}
+if(lvl == "11") {
+  lvlup = "799"
+}
+if(lvl == "12") {
+  lvlup = "899"
+}
+if(lvl == "13") {
+  lvlup = "999"
+}
+if(lvl == "14") {
+  lvlup = "1099"
+}
+if(lvl == "15") {
+  lvlup = "1199"
+}
+let lastxp = db.set(`lastxp_${message.author.id + message.guild.id}`, lvlup)
+
+
+  if (db.fetch(`xp_${message.author.id + message.guild.id}`) > lvlup) {  
     db.add(`level_${message.author.id + message.guild.id}`, 1)
     db.delete(`xp_${message.author.id + message.guild.id}`)
 let levelmessage = db.get(`lvlmsg_${message.guild.id}`)
