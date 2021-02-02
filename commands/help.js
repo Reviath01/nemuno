@@ -259,7 +259,7 @@ message.channel.send(embed)
 else {
     const embed = new Discord.MessageEmbed()
     .setColor('RANDOM')
-    .setDescription(`Can\'t find command or category ${category}`)
+    .setDescription(`Can\'t find command or category \`${category}\``)
     message.channel.send(embed)
 }
 };
