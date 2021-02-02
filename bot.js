@@ -1,4 +1,3 @@
-
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const ms = require('ms');
@@ -59,3 +58,14 @@ client.unloadCommand = async (commandName) => {
         return [console.error(err)];
     }
 };
+
+client.on('guildMemberAdd', member => {
+  const channel = db.get(`memberaddch_${member.guild.id}`)
+if(channel === null) return;
+let a = member.guild.channels.cache.get(channel)
+let msg = db.get(`newmembermsg_${member.guild.id}`)
+if(msg === null) {
+msg = `Welcome to server <@${member.id}>`
+}
+a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``)
+});
