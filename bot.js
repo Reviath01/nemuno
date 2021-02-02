@@ -69,3 +69,13 @@ msg = `Welcome to server <@${member.id}>`
 }
 a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``)
 });
+client.on('guildMemberRemove', member => {
+  const channel = db.get(`memberremovech_${member.guild.id}`)
+if(channel === null) return;
+let a = member.guild.channels.cache.get(channel)
+let msg = db.get(`memberremovemsg_${member.guild.id}`)
+if(msg === null) {
+msg = `${member} left the server!`
+}
+a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``)
+});
