@@ -28,7 +28,8 @@ else if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -welcome-message {Message}', value: 'Set welcome message for guild (use {mention} for mention and {username} for username)' },
         { name: '<a:developer:786112416567263262> -welcome-channel {Channel}', value: 'Set welcome channel to send welcome message' },
         { name: '<a:developer:786112416567263262> -leave-message {Message}', value: 'Set leave message for guild (use {mention} for mention and {username} for username)' },
-        { name: '<a:developer:786112416567263262> -leave-channel {Channel}', value: 'Set leave channel to send leave message' }
+        { name: '<a:developer:786112416567263262> -leave-channel {Channel}', value: 'Set leave channel to send leave message' },
+        { name: 'Do you have an issue', value: '[Create an issue](https://git.randomchars.net/leviathan/nemuno/-/issues/new)'}
     )
     .setThumbnail(client.user.displayAvatarURL())
     .setColor(0xff0000)
@@ -44,7 +45,8 @@ else if (category == 'fun'){
         { name: '<a:butterfly:797752340014694410> -rank {User}', value: 'Show\'s rank of the user' },
 		{ name: '<a:butterfly:797752340014694410> -play {Link or name}', value: 'Play\'s music' },
         { name: '<a:butterfly:797752340014694410> -skip', value: 'Skip\'s the current music' },
-        { name: '<a:butterfly:797752340014694410> -touhou', value: 'Send\'s random touhou image' }
+        { name: '<a:butterfly:797752340014694410> -touhou', value: 'Send\'s random touhou image' },
+        { name: 'Do you have an issue', value: '[Create an issue](https://git.randomchars.net/leviathan/nemuno/-/issues/new)'}
     )
     .setColor(0xffa900)
     .setThumbnail(client.user.displayAvatarURL())
@@ -60,7 +62,8 @@ else if (category == 'user'){
         { name: '<a:FeelsEveryone:721199565260193854> -server-info', value: 'Give\'s information about server' },
         { name: '<a:FeelsEveryone:721199565260193854> -afk', value: 'Set you as AFK' },
 		{ name: '<a:FeelsEveryone:721199565260193854> -roles', value: 'Show\'s role list' },
-      	{ name: '<a:FeelsEveryone:721199565260193854> -reminder', value: 'Remind\'s you' }
+      	{ name: '<a:FeelsEveryone:721199565260193854> -reminder', value: 'Remind\'s you' },
+          { name: 'Do you have an issue', value: '[Create an issue](https://git.randomchars.net/leviathan/nemuno/-/issues/new)'}
     )
     .setColor(0x5a99ff)
     .setThumbnail(client.user.displayAvatarURL());
@@ -201,6 +204,55 @@ else if (category == 'touhou'){
     const embed = new Discord.MessageEmbed()
     .setDescription('Send\'s random touhou character')
     .addField('Correct Usage:', '-touhou')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'stats'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Show\'s stats of bot')
+    .addField('Correct Usage:', '-stats')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'invite'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Send\'s invite link')
+    .addField('Correct Usage:', '-invite')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'whois'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Whois a user')
+    .addField('Correct Usage:', '-whois {User}')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'server-info'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Send\'s server info')
+    .addField('Correct Usage:', '-server-info')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'afk'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Set you as AFK')
+    .addField('Correct Usage:', '-afk {Message}')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'roles'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Show\'s all roles')
+    .addField('Correct Usage:', '-roles')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'reminder'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Remind\'s you in time with your message')
+    .addField('Correct Usage:', '-reminder {Time} {Message}')
     .setColor('RANDOM')
 message.channel.send(embed)
 }
