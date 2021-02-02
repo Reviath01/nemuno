@@ -7,7 +7,7 @@ if (!category){
     const embedhelp = new Discord.MessageEmbed()
 .setTitle('Nemuno Help Menu!')
 .addFields(
-    { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \n-link {Allow or deny} \n-slowmode {Amount} \n-levelmessage {Enable or Disable} \nType `-help moderation` for details' },
+    { name: '<a:developer:786112416567263262> Moderation Commands', value: '-ban {User} {Reason} \n-mute {User} {Duration} {Reason} \n-unmute {User} \n-kick {User} {Reason} \n-clear {Amount} \n-link {Allow or deny} \n-slowmode {Amount} \n-levelmessage {Enable or Disable} \n-welcome-channel {Channel} \n-welcome-message {Message} \nType `-help moderation` for details' },
     { name: '<a:butterfly:797752340014694410> Fun Commands', value: '-avatar {User} \n-kiss {User} \n-hug {User} \n-rank {User} \n-play {Link or name} \n-skip \n-touhou \nType `-help fun` for details' },
     { name: '<a:FeelsEveryone:721199565260193854> User Commands', value: '-stats \n-invite \n-ping \n-whois {User} \n-server-info \n-afk \n-roles \n-reminder {Message} \nType `-help user` for details' },
 )
@@ -27,6 +27,8 @@ if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -link {Allow or deny}', value: 'Deletes links' },
         { name: '<a:developer:786112416567263262> -slowmode {Amount}', value: 'Set\'s slowmode' },
         { name: '<a:developer:786112416567263262> -levelmessage {Enable or Disable}', value: 'Allow\'s you to disable level up message' },
+        { name: '<a:developer:786112416567263262> -welcome-message {Message}', value: 'Set welcome message for guild (use {mention} for mention and {username} for username)' },
+        { name: '<a:developer:786112416567263262> -welcome-channel {Channel}', value: 'Set welcome channel to send welcome message' },
     )
     .setThumbnail(client.user.displayAvatarURL())
     .setColor(0xff0000)
