@@ -2,11 +2,9 @@ const Discord = require('discord.js');
 const ms = require("ms");
 
 exports.run = async(client, message, args) => {
-
-    let spammer = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
-
-    if(!spammer) return message.channel.send("Please specify user to perform action upon.");
     if(!message.member.hasPermission("MANAGE_ROLES")) return message.reply("Lacking permission to perform such action.");
+    let spammer = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
+    if(!spammer) return message.channel.send("Please specify user to perform action upon.");
     let role = message.guild.roles.cache.find(r => r.name === "Muted");
     
     if(!role){

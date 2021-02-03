@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const db = require('quick.db')
 
 exports.run = async (client, message, args) => {
-  if(!message.author.hasPermission("ADMINISTRATOR")) return message.channel.send('You need administrator permission to run this command')
+  if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('You need administrator permission to run this command')
 let arg = args[0]
 if(!arg) return message.channel.send('You need to say `activate` or `disable` or `set {New Message}` \nOn setting new message you can use {level} and {mention}')
 if(arg == "activate") {
