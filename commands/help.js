@@ -24,7 +24,7 @@ else if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -clear {Amount}', value: 'Delete\'s messages' },
         { name: '<a:developer:786112416567263262> -link {Allow or deny}', value: 'Deletes links' },
         { name: '<a:developer:786112416567263262> -slowmode {Amount}', value: 'Set\'s slowmode' },
-        { name: '<a:developer:786112416567263262> -levelmessage {Enable or Disable}', value: 'Allow\'s you to disable level up message' },
+        { name: '<a:developer:786112416567263262> -levelmessage {Enable or Disable or Set {New Message}}', value: 'Allow\'s you to disable or set new level up message' },
         { name: '<a:developer:786112416567263262> -welcome-message {Message}', value: 'Set welcome message for guild (use {mention} for mention and {username} for username)' },
         { name: '<a:developer:786112416567263262> -welcome-channel {Channel}', value: 'Set welcome channel to send welcome message' },
         { name: '<a:developer:786112416567263262> -leave-message {Message}', value: 'Set leave message for guild (use {mention} for mention and {username} for username)' },
@@ -121,8 +121,9 @@ message.channel.send(embed)
 }
 else if (category == 'levelmessage'){
     const embed = new Discord.MessageEmbed()
-    .setDescription('Allow\'s you to block level up messages')
-    .addField('Correct Usage:', '-ban {Enable or Disable}')
+    .setDescription('Allow\'s you to disable or set new level up message')
+    .addField('Correct Usage:', '-levelmessage {Enable or Disable or Set {New Message}}')
+    .addField('If you are setting new message you can mention user with {mention} and new level with {level}')
     .setColor('RANDOM')
 message.channel.send(embed)
 }

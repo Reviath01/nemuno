@@ -80,7 +80,11 @@ let lastxp = db.set(`lastxp_${message.author.id + message.guild.id}`, lvlup)
     db.delete(`xp_${message.author.id + message.guild.id}`)
 let levelmessage = db.get(`lvlmsg_${message.guild.id}`)
 if(levelmessage == "active") {
-message.channel.send(`<@${message.author.id}> is now ${db.get(`level_${message.author.id + message.guild.id}`)} level :tada:`)
+  let lvlmsg2 = db.get(`lvlmsg2_${message.guild.id}`)
+  if(lvlmsg2 === null) {
+    lvlmsg2 = `<@${message.author.id}> is now ${db.get(`level_${message.author.id + message.guild.id}`)} level :tada:`
+  }
+message.channel.send(lvlmsg2 ? lvlmsg2.replace('{level}', `${db.get(`level_${message.author.id + message.guild.id}`)}`).replace('{mention}', `${message.author}`) : ``)
 }
   };
             if (message.content === '<@!797421915152449537>') {
