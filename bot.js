@@ -126,10 +126,9 @@ client.on('channelDelete', async channel => {
   const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     var embed = new Discord.MessageEmbed()
-                    .addField(`Channel renamed`, `New name: \`${channel.name}\`\nID: ${channel.id}`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL())
+        .addField(`Channel renamed`, `New name: \`${channel.name}\`\nID: ${channel.id}`)
+        .setTimestamp()
+        .setColor("RANDOM")
     c.send(embed)
 });
 
@@ -208,7 +207,7 @@ client.on('messageDelete', async message => {
                     .addField(`Channel:`,`<#${message.channel.id}> (${message.channel.name})`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${message.client.user.username}#${message.client.user.discriminator}`, message.client.user.avatarURL)
+                    .setFooter(`${message.client.user.tag}`, message.client.user.avatarURL())
 
     channel.send(embed)
 });
@@ -261,32 +260,6 @@ client.on('roleDelete', async (role) => {
 
     channel.send(embed)
 })
-client.on('voiceStateUpdate', (oldMember, newMember) => {
-  
-  if (db.has(`log_${oldMember.guild.id}`) === false) return;
-  
-  var kanal = oldMember.guild.channels.cache.get(db.fetch(`log_${oldMember.guild.id}`).replace("<#", "").replace(">", ""))
-  if (!kanal) return;
-  
-  let newUserChannel = newMember.voiceChannel
-  let oldUserChannel = oldMember.voiceChannel
-
-  if(oldUserChannel === undefined && newUserChannel !== undefined) {
-
-    const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setDescription(`<@${newMember.user.id}> joined voice channel \`${newUserChannel.name}\``)
-    kanal.send(embed);
-    
-  } else if(newUserChannel === undefined){
-
-    const embed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
-    .setDescription(`<@${newMember.user.id}> left voice channel`)
-    kanal.send(embed);
-    
-  }
-});
 client.on("guildMemberAdd", async member => {   
  let role = db.get(`role_${member.guild.id}`)
  if(!role) return;
