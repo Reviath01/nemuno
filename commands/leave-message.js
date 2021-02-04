@@ -6,7 +6,7 @@ if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('
 const a = args[0]
 if(!a) return message.channel.send('You need to say a message for new members or say `default`')
 if(a == "default") {
-db.delete(`newmembermsg_${message.guild.id}`)
+db.delete(`memberremovemsg_${message.guild.id}`)
 message.channel.send('Setted to default')
 } else {
 let msg = args.join(' ')

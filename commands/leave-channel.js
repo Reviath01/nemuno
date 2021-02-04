@@ -6,7 +6,7 @@ if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send('
 const a = args[0]
 if(!a) return message.channel.send('You need to mention a channel or say `disable`')
 if(a == "disable") {
-db.delete(`memberaddch_${message.guild.id}`)
+db.delete(`memberremovech_${message.guild.id}`)
 message.channel.send('Disabled!')
 } else {
 let ch = message.mentions.channels.first();
