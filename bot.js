@@ -69,6 +69,7 @@ msg = `Welcome to server <@${member.id}>`
 }
 a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``)
 });
+
 client.on('guildMemberRemove', member => {
   const channel = db.get(`memberremovech_${member.guild.id}`)
 if(channel === null) return;
@@ -78,4 +79,13 @@ if(msg === null) {
 msg = `${member} left the server!`
 }
 a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``)
+});
+
+client.on("guildCreate", guild => {
+const guildcreate = new Discord.MessageEmbed()
+.setDescription(`I'm added to **${guild.name}**`)
+.addField('Guild\'s owner:', guild.owner)
+.addField('Guild member size:', guild.members.cache.size)
+.setColor('RANDOM')
+client.channels.cache.get('790640302452375562').send(guildcreate)
 });
