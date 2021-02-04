@@ -30,6 +30,8 @@ else if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -leave-message {Message}', value: 'Set leave message for guild (use {mention} for mention and {username} for username)' },
         { name: '<a:developer:786112416567263262> -leave-channel {Channel}', value: 'Set leave channel to send leave message' },
         { name: '<a:developer:786112416567263262> -warn {User} {Message}', value: 'Warn user' },
+        { name: '<a:developer:786112416567263262> -auto-role {Role}', value: 'Give\'s the role to new members' },
+        { name: '<a:developer:786112416567263262> -mod-log {Channel}', value: 'Set\'s channel as mod-log' },
         { name: 'Do you have an issue', value: '[Create an issue](https://git.randomchars.net/leviathan/nemuno/-/issues/new)'}
     )
     .setThumbnail(client.user.displayAvatarURL())
@@ -270,6 +272,20 @@ else if (category == 'server-settings'){
     const embed = new Discord.MessageEmbed()
     .setDescription('Show\'s server settings')
     .addField('Correct Usage:', '-server-settings')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'auto-role'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Give role for new members')
+    .addField('Correct Usage:', '-auto-role {Role}')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'mod-log'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('When message deleted, edited or channel renamed, deleted, created, etc. you will get notification')
+    .addField('Correct Usage:', '-mod-log {Channel}')
     .setColor('RANDOM')
 message.channel.send(embed)
 }

@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const db = require('quick.db');
 
 exports.run = async(client, message, args) => {
     let message1 = args[0]
@@ -15,7 +16,7 @@ if(message1 == "disable") {
 else {
     let role = message.mentions.roles.first()
     db.set(`role_${message.guild.id}`, role.id)
-    message.channel.send(new Discord.MessageEmbed().setDescription(`Auto role setted to <@${role.id}>`).setAuthor(message.author.username, message.author.avatarURL()))
+    message.channel.send(new Discord.MessageEmbed().setDescription(`Auto role setted to <@&${role.id}>`).setAuthor(message.author.username, message.author.avatarURL()))
 }
 };
 
