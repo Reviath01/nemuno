@@ -39,6 +39,7 @@ const embed = new Discord.MessageEmbed()
 .addField("Goodbye Message", `${goodbyemessage}`)
 .addField("Level Message", `${lvlmsg}`)
 .addField("Link Block", `${linkblock}`)
+.setColor('RANDOM')
 message.channel.send(embed)
 };
 module.exports.help = {
