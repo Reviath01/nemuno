@@ -106,7 +106,7 @@ client.on('channelCreate', async channel => {
                     .addField(`Channel created`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL)
+                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL())
     c.send(embed)
 });
 
@@ -117,7 +117,7 @@ client.on('channelDelete', async channel => {
                     .addField(`Channel deleted`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL)
+                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL())
 
     c.send(embed)
 });
@@ -129,7 +129,7 @@ client.on('channelDelete', async channel => {
                     .addField(`Channel renamed`, `New name: \`${channel.name}\`\nID: ${channel.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL)
+                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL())
     c.send(embed)
 });
 
@@ -141,7 +141,7 @@ client.on('emojiCreate', emoji => {
                     .addField(`Emoji created`, `Name: \`${emoji.name}\`\n\nID: ${emoji.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL)
+                    .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL())
 
     c.send(embed)
     });
@@ -153,7 +153,7 @@ client.on('emojiDelete', emoji => {
                     .addField(`Emoji deleted`, `Name: \`${emoji.name}\`\nID: ${emoji.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL)
+                    .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL())
 
     c.send(embed)
     });
@@ -165,7 +165,7 @@ client.on('emojiUpdate', (oldEmoji, newEmoji) => {
                     .addField(`Emoji updated`, `Old name: \`${oldEmoji.name}\`\n New ismi: \`${newEmoji.name}\`\nID: ${oldEmoji.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
-                    .setFooter(`${newEmoji.client.user.username}#${newEmoji.client.user.discriminator}`, newEmoji.client.user.avatarURL)
+                    .setFooter(`${newEmoji.client.user.username}#${newEmoji.client.user.discriminator}`, newEmoji.client.user.avatarURL())
 
     c.send(embed)
     });
@@ -201,9 +201,10 @@ client.on('messageDelete', async message => {
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
-                    .setAuthor(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-                    .setTitle("Message deleted")                
+                    .setAuthor(`${message.author.tag}`, message.author.avatarURL())
+                    .setTitle("Message deleted")
                     .addField(`Deleted message:`,`${message.content}`)
+                    .addField("Message's author", `<@${message.author.id}>`)
                     .addField(`Channel:`,`<#${message.channel.id}> (${message.channel.name})`)
                     .setTimestamp()
                     .setColor("RANDOM")
@@ -224,10 +225,10 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
     .addField("Old: ",`${oldMessage.content}`)
     .addField("New: ",`${newMessage.content}`)
     .addField("Channel: ",`<#${oldMessage.channel.id}> (${oldMessage.channel.name})`)
+    .addField("Message's author", `<@${oldMessage.author.id}>`)
     .setTimestamp()
     .setColor("RANDOM")
-    .setFooter(`${oldMessage.client.user.username}#${oldMessage.client.user.discriminator}`,`${oldMessage.client.user.avatarURL}`)
-
+    .setFooter(`${oldMessage.client.user.tag}`,`${oldMessage.client.user.avatarURL()}`)
     channel.send(embed)
 });
 
@@ -241,7 +242,7 @@ client.on('roleCreate', async (role) => {
 .setTimestamp()
 .setColor("RANDOM")
 .addField("Color: ",`${role.hexColor}`)
-.setFooter(`${role.client.user.username}#${role.client.user.discriminator}`, role.client.user.avatarURL)
+.setFooter(`${role.client.user.tag}`, role.client.user.avatarURL())
 
     channel.send(embed)
 });
@@ -252,11 +253,11 @@ client.on('roleDelete', async (role) => {
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
-.addField(`Role deleted`, ` name: \`${role.name}\`\n ID: ${role.id}`)                    
+.addField(`Role deleted`, ` name: \`${role.name}\`\nID: ${role.id}`)                    
 .setTimestamp()
 .setColor("RANDOM")
 .addField("Color",`${role.hexColor}`)
-.setFooter(`${role.client.user.username}#${role.client.user.discriminator}`, role.client.user.avatarURL)
+.setFooter(`${role.client.user.tag}`, role.client.user.avatarURL())
 
     channel.send(embed)
 })
