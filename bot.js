@@ -89,3 +89,12 @@ const guildcreate = new Discord.MessageEmbed()
 .setColor('RANDOM')
 client.channels.cache.get('790640302452375562').send(guildcreate)
 });
+
+client.on("guildDelete", guild => {
+const guilddelete = new Discord.MessageEmbed()
+.setDescription(`I have kicked from **${guild.name}**`)
+.addField('Guild\'s owner:', guild.owner)
+.addField('Guild member size:', guild.members.cache.size)
+.setColor('RANDOM')
+client.channels.cache.get('790640302452375562').send(guilddelete)
+});
