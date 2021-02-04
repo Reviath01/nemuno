@@ -100,7 +100,7 @@ client.channels.cache.get('790640302452375562').send(guilddelete)
 });
 
 client.on('channelCreate', async channel => {
-  const c = channel.guild.channels.get(db.fetch(`log_${channel.guild.id}`));
+  const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     var embed = new Discord.MessageEmbed()
                     .addField(`Channel created`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
@@ -111,7 +111,7 @@ client.on('channelCreate', async channel => {
 });
 
 client.on('channelDelete', async channel => {
-  const c = channel.guild.channels.get(db.fetch(`log_${channel.guild.id}`));
+  const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     let embed = new Discord.MessageEmbed()
                     .addField(`Channel deleted`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
@@ -123,7 +123,7 @@ client.on('channelDelete', async channel => {
 });
 
    client.on('channelNameUpdate', async channel => {
-  const c = channel.guild.channels.get(db.fetch(`log_${channel.guild.id}`));
+  const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     var embed = new Discord.MessageEmbed()
                     .addField(`Channel renamed`, `New name: \`${channel.name}\`\nID: ${channel.id}`)
@@ -134,7 +134,7 @@ client.on('channelDelete', async channel => {
 });
 
 client.on('emojiCreate', emoji => {
-  const c = emoji.guild.channels.get(db.fetch(`log_${emoji.guild.id}`));
+  const c = emoji.guild.channels.cache.get(db.fetch(`log_${emoji.guild.id}`));
   if (!c) return;
 
     let embed = new Discord.MessageEmbed()
@@ -146,7 +146,7 @@ client.on('emojiCreate', emoji => {
     c.send(embed)
     });
 client.on('emojiDelete', emoji => {
-  const c = emoji.guild.channels.get(db.fetch(`log_${emoji.guild.id}`));
+  const c = emoji.guild.channels.cache.get(db.fetch(`log_${emoji.guild.id}`));
   if (!c) return;
 
     let embed = new Discord.MessageEmbed()
@@ -158,7 +158,7 @@ client.on('emojiDelete', emoji => {
     c.send(embed)
     });
 client.on('emojiUpdate', (oldEmoji, newEmoji) => {
-  const c = newEmoji.guild.channels.get(db.fetch(`log_${newEmoji.guild.id}`));
+  const c = newEmoji.guild.channels.cache.get(db.fetch(`log_${newEmoji.guild.id}`));
   if (!c) return;
 
     let embed = new Discord.MessageEmbed()
@@ -171,7 +171,7 @@ client.on('emojiUpdate', (oldEmoji, newEmoji) => {
     });
 
 client.on('guildBanAdd', async (guild, user) => {    
-    const channel = guild.channels.get(db.fetch(`log_${guild.id}`));
+    const channel = guild.channels.cache.get(db.fetch(`log_${guild.id}`));
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
@@ -184,7 +184,7 @@ client.on('guildBanAdd', async (guild, user) => {
 
 
 client.on('guildBanRemove', async (guild, user) => {    
-    const channel = guild.channels.get(db.fetch(`log_${guild.id}`));
+    const channel = guild.channels.cache.get(db.fetch(`log_${guild.id}`));
   if (!channel) return;
     let embed = new Discord.MessageEmbed()
                     .setAuthor(`${user.username}#${user.discriminator}`, user.avatarURL)
@@ -197,7 +197,7 @@ client.on('guildBanRemove', async (guild, user) => {
 client.on('messageDelete', async message => {    
   if(message.author.bot) return
 
-    const channel = message.guild.channels.get(db.fetch(`log_${message.guild.id}`));
+    const channel = message.guild.channels.cache.get(db.fetch(`log_${message.guild.id}`));
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
@@ -216,7 +216,7 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
 
-    const channel = oldMessage.guild.channels.get(db.fetch(`log_${oldMessage.guild.id}`));
+    const channel = oldMessage.guild.channels.cache.get(db.fetch(`log_${oldMessage.guild.id}`));
     if(!channel) return;
 
     let embed = new Discord.MessageEmbed()
@@ -233,7 +233,7 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
 
 client.on('roleCreate', async (role) => {    
 
-    const channel = role.guild.channels.get(db.fetch(`log_${role.guild.id}`));
+    const channel = role.guild.channels.cache.get(db.fetch(`log_${role.guild.id}`));
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
@@ -248,7 +248,7 @@ client.on('roleCreate', async (role) => {
 
 client.on('roleDelete', async (role) => {    
 
-    const channel = role.guild.channels.get(db.fetch(`log_${role.guild.id}`));
+    const channel = role.guild.channels.cache.get(db.fetch(`log_${role.guild.id}`));
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
@@ -264,7 +264,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   
   if (db.has(`log_${oldMember.guild.id}`) === false) return;
   
-  var kanal = oldMember.guild.channels.get(db.fetch(`log_${oldMember.guild.id}`).replace("<#", "").replace(">", ""))
+  var kanal = oldMember.guild.channels.cache.get(db.fetch(`log_${oldMember.guild.id}`).replace("<#", "").replace(">", ""))
   if (!kanal) return;
   
   let newUserChannel = newMember.voiceChannel
