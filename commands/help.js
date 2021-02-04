@@ -3,7 +3,7 @@ exports.run = async (client, message, args) => {
 let category = args[0];
 
 if (!category){
-    const embedhelp = new Discord.MessageEmbed()
+const embedhelp = new Discord.MessageEmbed()
 .setTitle('Nemuno Help Menu!')
 .addField("<a:developer:786112416567263262> Moderation Commands <a:developer:786112416567263262>", "Type `-help moderation` to see moderation commands")
 .addField("<a:butterfly:797752340014694410> Fun Commands <a:butterfly:797752340014694410>", "Type `-help fun` to see fun commands")
@@ -29,6 +29,7 @@ else if (category == 'moderation'){
         { name: '<a:developer:786112416567263262> -welcome-channel {Channel}', value: 'Set welcome channel to send welcome message' },
         { name: '<a:developer:786112416567263262> -leave-message {Message}', value: 'Set leave message for guild (use {mention} for mention and {username} for username)' },
         { name: '<a:developer:786112416567263262> -leave-channel {Channel}', value: 'Set leave channel to send leave message' },
+        { name: '<a:developer:786112416567263262> -warn {User} {Message}', value: 'Warn user' },
         { name: 'Do you have an issue', value: '[Create an issue](https://git.randomchars.net/leviathan/nemuno/-/issues/new)'}
     )
     .setThumbnail(client.user.displayAvatarURL())
@@ -63,6 +64,7 @@ else if (category == 'user'){
         { name: '<a:FeelsEveryone:721199565260193854> -afk', value: 'Set you as AFK' },
 		{ name: '<a:FeelsEveryone:721199565260193854> -roles', value: 'Show\'s role list' },
       	{ name: '<a:FeelsEveryone:721199565260193854> -reminder', value: 'Remind\'s you' },
+        { name: '<a:FeelsEveryone:721199565260193854> -server-settings', value: 'Show\'s server settings' },
           { name: 'Do you have an issue', value: '[Create an issue](https://git.randomchars.net/leviathan/nemuno/-/issues/new)'}
     )
     .setColor(0x5a99ff)
@@ -254,6 +256,20 @@ else if (category == 'reminder'){
     const embed = new Discord.MessageEmbed()
     .setDescription('Remind\'s you in time with your message')
     .addField('Correct Usage:', '-reminder {Time} {Message}')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'warn'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Send your message to user as warning')
+    .addField('Correct Usage:', '-warn {User} {Message}')
+    .setColor('RANDOM')
+message.channel.send(embed)
+}
+else if (category == 'server-settings'){
+    const embed = new Discord.MessageEmbed()
+    .setDescription('Show\'s server settings')
+    .addField('Correct Usage:', '-server-settings')
     .setColor('RANDOM')
 message.channel.send(embed)
 }
