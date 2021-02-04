@@ -5,7 +5,34 @@ module.exports = {
         client.on('message', async message => {
 			let linkblock = db.get(`link_${message.guild.id}`)
 			if(linkblock == "deny") {
-				const reklam = ["https://","http://","discord.gg"];
+				  const reklam = [
+    ".ml",
+    "discord.gg",
+    "invite",
+    "discordapp",
+    "discordgg",
+    ".com",
+    ".net",
+    ".xyz",
+    ".tk",
+    ".pw",
+    ".io",
+    ".me",
+    ".gg",
+    "www.",
+    "https",
+    "http",
+    ".gl",
+    ".org",
+    ".com.tr",
+    ".biz",
+    ".party",
+    ".rf.gd",
+    ".az",
+    "glitch.me",
+    "glitch.com"
+  ];
+
               if (reklam.some(word => message.content.toLowerCase().includes(word))) {
                 try {
                   if (!message.member.hasPermission("ADMINISTRATOR")) {                                       
