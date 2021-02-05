@@ -137,7 +137,7 @@ client.on('emojiCreate', emoji => {
   if (!c) return;
 
     let embed = new Discord.MessageEmbed()
-                    .addField(`Emoji created`, `Name: \`${emoji.name}\`\n\nID: ${emoji.id}`)
+                    .addField(`Emoji created`, `Name: \`${emoji.name}\`\nID: ${emoji.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
                     .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL())
@@ -161,7 +161,7 @@ client.on('emojiUpdate', (oldEmoji, newEmoji) => {
   if (!c) return;
 
     let embed = new Discord.MessageEmbed()
-                    .addField(`Emoji updated`, `Old name: \`${oldEmoji.name}\`\n New ismi: \`${newEmoji.name}\`\nID: ${oldEmoji.id}`)
+                    .addField(`Emoji updated`, `Old name: \`${oldEmoji.name}\`\nNew name: \`${newEmoji.name}\`\nID: ${oldEmoji.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
                     .setFooter(`${newEmoji.client.user.username}#${newEmoji.client.user.discriminator}`, newEmoji.client.user.avatarURL())
@@ -211,7 +211,6 @@ client.on('messageDelete', async message => {
 
     channel.send(embed)
 });
-
 client.on('messageUpdate', async(oldMessage, newMessage) => {
     if(oldMessage.author.bot) return;
     if(oldMessage.content == newMessage.content) return;
@@ -227,7 +226,6 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
     .addField("Message's author", `<@${oldMessage.author.id}>`)
     .setTimestamp()
     .setColor("RANDOM")
-    .setFooter(`${oldMessage.client.user.tag}`,`${oldMessage.client.user.avatarURL()}`)
     channel.send(embed)
 });
 
@@ -237,12 +235,10 @@ client.on('roleCreate', async (role) => {
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
-.addField(`Role created`, ` name: \`${role.name}\`\n ID: ${role.id}`)                    
+.addField(`Role created`, `(<@&${role.id}>) name: \`${role.name}\`\nID: ${role.id}`)                    
 .setTimestamp()
 .setColor("RANDOM")
 .addField("Color: ",`${role.hexColor}`)
-.setFooter(`${role.client.user.tag}`, role.client.user.avatarURL())
-
     channel.send(embed)
 });
 
@@ -252,12 +248,10 @@ client.on('roleDelete', async (role) => {
   if (!channel) return;
   
     let embed = new Discord.MessageEmbed()
-.addField(`Role deleted`, ` name: \`${role.name}\`\nID: ${role.id}`)                    
+.addField(`Role deleted`, `Name: \`${role.name}\`\nID: ${role.id}`)                    
 .setTimestamp()
 .setColor("RANDOM")
 .addField("Color",`${role.hexColor}`)
-.setFooter(`${role.client.user.tag}`, role.client.user.avatarURL())
-
     channel.send(embed)
 })
 client.on("guildMemberAdd", async member => {   
