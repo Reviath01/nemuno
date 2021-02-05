@@ -12,10 +12,13 @@ message.channel.send('Setted to default')
 let msg = args.join(' ')
 if(!msg) return message.channel.send('You need to specify a message \n{mention} mention\'s user {username} show\'s username')
 db.set(`memberremovemsg_${message.guild.id}`, msg)
-message.channel.send(`Succesfully setted new message`)
+const embed2 = new Discord.MessageEmbed()
+.setColor('RANDOM')
+.setDescription(`Leave message is setted to ${msg}`)
+.setAuthor(message.author.avatarURL(), message.author.username)
+message.channel.send(embed2)
 }
 }
-
   module.exports.help = {
     name: 'goodbye-message',
     aliases: ['goodbyemessage','leave-message','leavemessage']

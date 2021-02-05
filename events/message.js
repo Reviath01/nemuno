@@ -99,9 +99,6 @@ if(lvl == "14") {
 if(lvl == "15") {
   lvlup = 1199
 }
-let lastxp = db.set(`lastxp_${message.author.id + message.guild.id}`, lvlup)
-
-
   if (db.fetch(`xp_${message.author.id + message.guild.id}`) > lvlup) {  
     db.add(`level_${message.author.id + message.guild.id}`, 1)
     db.delete(`xp_${message.author.id + message.guild.id}`)

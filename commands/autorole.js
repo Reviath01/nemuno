@@ -9,17 +9,16 @@ if(message1 == "disable") {
     if(rol === null) {
         message.channel.send('Auto role is not setted!') 
     } else {
+    message.channel.send(`Deleted autorole for <@&${rol}>`)
     db.delete(`role_${message.guild.id}`)
-    message.channel.send('Succesful')
     }
 } 
 else {
     let role = message.mentions.roles.first()
     db.set(`role_${message.guild.id}`, role.id)
-    message.channel.send(new Discord.MessageEmbed().setDescription(`Auto role setted to <@&${role.id}>`).setAuthor(message.author.username, message.author.avatarURL()))
+    message.channel.send(new Discord.MessageEmbed().setDescription(`Auto role setted to <@&${role.id}>`).setAuthor(message.author.username, message.author.avatarURL().setColor('RANDOM')))
 }
 };
-
 module.exports.help = {
     name: 'auto-role',
     aliases: ['autorole', 'otorole','oto-role']

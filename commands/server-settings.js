@@ -5,6 +5,12 @@ let welcomechannel = db.get(`memberaddch_${message.guild.id}`)
 if(welcomechannel === null){
     welcomechannel = "Not Setted"
 }
+let welcomechannel2;
+if(welcomechannel == "Not Setted") {
+ welcomechannel2 = "Not Setted"  
+} else {
+    welcomechannel2 = `<#${welcomechannel}>`
+}
 let welcomemessage = db.get(`newmembermsg_${message.guild.id}`)
 if(welcomemessage === null) {
     welcomemessage = `Welcome to server {mention}`
@@ -12,6 +18,12 @@ if(welcomemessage === null) {
 let goodbyechannel = db.get(`memberremovech_${message.guild.id}`)
 if(goodbyechannel === null) {
     goodbyechannel = "Not Setted"
+}
+let goodbyechannel2;
+if(goodbyechannel == "Not Setted") {
+    goodbyechannel2 = "Not Setted"
+} else {
+    goodbyechannel2 = `<#${goodbyechannel}>`
 }
 let goodbyemessage = db.get(`memberremovemsg_${message.guild.id}`)
 if(goodbyemessage === null) {
@@ -55,9 +67,9 @@ const embed = new Discord.MessageEmbed()
 .setAuthor(message.author.username, message.author.avatarURL())
 .setFooter(message.guild.name, message.guild.iconURL())
 .setDescription(`${message.guild.name}'s Settings`)
-.addField("Welcome Channel", `<#${welcomechannel}>`)
+.addField("Welcome Channel", `${welcomechannel2}`)
 .addField("Welcome Message", `${welcomemessage}`)
-.addField("Goodbye Channel", `<#${goodbyechannel}>`)
+.addField("Goodbye Channel", `${goodbyechannel2}`)
 .addField("Goodbye Message", `${goodbyemessage}`)
 .addField("Level Message", `${lvlmsg}`)
 .addField("Link Block", `${linkblock}`)
