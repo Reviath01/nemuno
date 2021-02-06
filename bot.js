@@ -67,7 +67,11 @@ let msg = db.get(`newmembermsg_${member.guild.id}`)
 if(msg === null) {
 msg = `Welcome to server <@${member.id}>`
 }
-a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``)
+a.send(msg ? msg.replace('{mention}', `${member}`).replace('{username}', `${member.user.username}`) : ``);
+let role = db.get(`role_${member.guild.id}`)
+if(!role) return;
+let role2 = member.guild.roles.cache.get(role)
+member.roles.add(role2)
 });
 
 client.on('guildMemberRemove', member => {
@@ -103,23 +107,20 @@ client.on('channelCreate', async channel => {
   const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     var embed = new Discord.MessageEmbed()
-                    .addField(`Channel created`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL())
-    c.send(embed)
+       .addField(`Channel created`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
+       .setTimestamp()
+       .setColor("RANDOM")
+c.send(embed)
 });
 
 client.on('channelDelete', async channel => {
   const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     let embed = new Discord.MessageEmbed()
-                    .addField(`Channel deleted`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${channel.client.user.username}#${channel.client.user.discriminator}`, channel.client.user.avatarURL())
-
-    c.send(embed)
+  .addField(`Channel deleted`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
+  .setTimestamp()
+  .setColor("RANDOM")
+c.send(embed)
 });
 
    client.on('channelNameUpdate', async channel => {
@@ -137,45 +138,36 @@ client.on('emojiCreate', emoji => {
   if (!c) return;
 
     let embed = new Discord.MessageEmbed()
-                    .addField(`Emoji created`, `Name: \`${emoji.name}\`\nID: ${emoji.id}`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL())
-
+.addField(`Emoji created`, `Name: \`${emoji.name}\`\nID: ${emoji.id}`)
+.setTimestamp()
+.setColor("RANDOM")
     c.send(embed)
     });
 client.on('emojiDelete', emoji => {
   const c = emoji.guild.channels.cache.get(db.fetch(`log_${emoji.guild.id}`));
   if (!c) return;
-
     let embed = new Discord.MessageEmbed()
-                    .addField(`Emoji deleted`, `Name: \`${emoji.name}\`\nID: ${emoji.id}`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${emoji.client.user.username}#${emoji.client.user.discriminator}`, emoji.client.user.avatarURL())
-
+.addField(`Emoji deleted`, `Name: \`${emoji.name}\`\nID: ${emoji.id}`)
+.setTimestamp()
+.setColor("RANDOM")
     c.send(embed)
     });
 client.on('emojiUpdate', (oldEmoji, newEmoji) => {
   const c = newEmoji.guild.channels.cache.get(db.fetch(`log_${newEmoji.guild.id}`));
   if (!c) return;
-
-    let embed = new Discord.MessageEmbed()
-                    .addField(`Emoji updated`, `Old name: \`${oldEmoji.name}\`\nNew name: \`${newEmoji.name}\`\nID: ${oldEmoji.id}`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${newEmoji.client.user.username}#${newEmoji.client.user.discriminator}`, newEmoji.client.user.avatarURL())
-
+let embed = new Discord.MessageEmbed()
+.addField(`Emoji updated`, `Old name: \`${oldEmoji.name}\`\nNew name: \`${newEmoji.name}\`\nID: ${oldEmoji.id}`)
+.setTimestamp()
+.setColor("RANDOM")
     c.send(embed)
     });
 
 client.on('guildBanAdd', async (guild, user) => {    
     const channel = guild.channels.cache.get(db.fetch(`log_${guild.id}`));
   if (!channel) return;
-  
     let embed = new Discord.MessageEmbed()
-                    .setAuthor(`${user.username}#${user.discriminator}`, user.avatarURL)
-                    .addField(`Member banned`, `<@${user.id}> Name: \`${user.username}\``)
+                    .setAuthor(`${user.tag}`, user.avatarURL())
+                    .addField(`Member banned`, `<@${user.id}> \nName: \`${user.username}\``)
                     .setTimestamp()
                     .setColor("RANDOM")
     channel.send(embed)
@@ -186,38 +178,30 @@ client.on('guildBanRemove', async (guild, user) => {
     const channel = guild.channels.cache.get(db.fetch(`log_${guild.id}`));
   if (!channel) return;
     let embed = new Discord.MessageEmbed()
-                    .setAuthor(`${user.username}#${user.discriminator}`, user.avatarURL)
-                    .addField(`User unbanned`, `<#${user.id}> Name: \`${user.username}\``)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-
+      .setAuthor(`${user.tag}`, user.avatarURL())
+      .addField(`Member unbanned`, `<@${user.id}> \nName: \`${user.username}\``)
+      .setTimestamp()
+      .setColor("RANDOM")
     channel.send(embed)
 });
 client.on('messageDelete', async message => {    
-  if(message.author.bot) return
-
+if(message.author.id == client.user.id) return;
     const channel = message.guild.channels.cache.get(db.fetch(`log_${message.guild.id}`));
   if (!channel) return;
-  
     let embed = new Discord.MessageEmbed()
-                    .setAuthor(`${message.author.tag}`, message.author.avatarURL())
-                    .setTitle("Message deleted")
-                    .addField(`Deleted message:`,`${message.content}`)
-                    .addField("Message's author", `<@${message.author.id}>`)
-                    .addField(`Channel:`,`<#${message.channel.id}> (${message.channel.name})`)
-                    .setTimestamp()
-                    .setColor("RANDOM")
-                    .setFooter(`${message.client.user.tag}`, message.client.user.avatarURL())
-
-    channel.send(embed)
+            .setAuthor(`${message.author.tag}`, message.author.avatarURL())
+            .setTitle("Message deleted")
+            .addField(`Deleted message:`,`${message.content}`)
+            .addField("Message's author", `<@${message.author.id}>`)
+            .addField(`Channel:`,`<#${message.channel.id}> (\`${message.channel.name}\`)`)
+            .setTimestamp()
+            .setColor("RANDOM")
+channel.send(embed)
 });
 client.on('messageUpdate', async(oldMessage, newMessage) => {
-    if(oldMessage.author.bot) return;
-    if(oldMessage.content == newMessage.content) return;
-
+if(oldMessage.author.id == client.user.id) return;
     const channel = oldMessage.guild.channels.cache.get(db.fetch(`log_${oldMessage.guild.id}`));
     if(!channel) return;
-
     let embed = new Discord.MessageEmbed()
     .setTitle("Message edited")
     .addField("Old: ",`${oldMessage.content}`)
@@ -230,12 +214,10 @@ client.on('messageUpdate', async(oldMessage, newMessage) => {
 });
 
 client.on('roleCreate', async (role) => {    
-
     const channel = role.guild.channels.cache.get(db.fetch(`log_${role.guild.id}`));
   if (!channel) return;
-  
     let embed = new Discord.MessageEmbed()
-.addField(`Role created`, `(<@&${role.id}>) name: \`${role.name}\`\nID: ${role.id}`)                    
+.addField(`Role created`, `Name: \`${role.name}\` ( <@&${role.id}> ) \nID: ${role.id}`)                    
 .setTimestamp()
 .setColor("RANDOM")
 .addField("Color: ",`${role.hexColor}`)
@@ -243,20 +225,12 @@ client.on('roleCreate', async (role) => {
 });
 
 client.on('roleDelete', async (role) => {    
-
     const channel = role.guild.channels.cache.get(db.fetch(`log_${role.guild.id}`));
   if (!channel) return;
-  
     let embed = new Discord.MessageEmbed()
-.addField(`Role deleted`, `Name: \`${role.name}\`\nID: ${role.id}`)                    
+.addField(`Role deleted`, `Name: \`${role.name}\` \nID: ${role.id}`)                    
 .setTimestamp()
 .setColor("RANDOM")
 .addField("Color",`${role.hexColor}`)
     channel.send(embed)
 })
-client.on("guildMemberAdd", async member => {   
- let role = db.get(`role_${member.guild.id}`)
- if(!role) return;
- let role2 = member.guild.roles.get(role)
-member.roles.add(role2)
-});
