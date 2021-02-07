@@ -107,7 +107,7 @@ client.on('channelCreate', async channel => {
   const c = channel.guild.channels.cache.get(db.fetch(`log_${channel.guild.id}`));
   if (!c) return;
     var embed = new Discord.MessageEmbed()
-       .addField(`Channel created`, `Name: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
+       .addField(`Channel created`, `Channel: <#${channel.id}>\nName: \`${channel.name}\`\nType: ${channel.type}\nID: ${channel.id}`)
        .setTimestamp()
        .setColor("RANDOM")
 c.send(embed)
@@ -167,7 +167,7 @@ client.on('guildBanAdd', async (guild, user) => {
   if (!channel) return;
     let embed = new Discord.MessageEmbed()
                     .setAuthor(`${user.tag}`, user.avatarURL())
-                    .addField(`Member banned`, `<@${user.id}> \nName: \`${user.username}\``)
+                    .addField(`Member banned`, `<@${user.id}> \nName: \`${user.username}\`\nID: ${user.id}`)
                     .setTimestamp()
                     .setColor("RANDOM")
     channel.send(embed)
@@ -190,9 +190,8 @@ if(message.author.id == client.user.id) return;
   if (!channel) return;
     let embed = new Discord.MessageEmbed()
             .setAuthor(`${message.author.tag}`, message.author.avatarURL())
-            .setTitle("Message deleted")
+            .setDescription(`Message sent by <@${message.author.id}> deleted!`)
             .addField(`Deleted message:`,`${message.content}`)
-            .addField("Message's author", `<@${message.author.id}>`)
             .addField(`Channel:`,`<#${message.channel.id}> (\`${message.channel.name}\`)`)
             .setTimestamp()
             .setColor("RANDOM")
@@ -203,11 +202,10 @@ if(oldMessage.author.id == client.user.id) return;
     const channel = oldMessage.guild.channels.cache.get(db.fetch(`log_${oldMessage.guild.id}`));
     if(!channel) return;
     let embed = new Discord.MessageEmbed()
-    .setTitle("Message edited")
+    .setDescription(`Message sent by <@${oldMessage.author.id}> edited!`)
     .addField("Old: ",`${oldMessage.content}`)
     .addField("New: ",`${newMessage.content}`)
     .addField("Channel: ",`<#${oldMessage.channel.id}> (${oldMessage.channel.name})`)
-    .addField("Message's author", `<@${oldMessage.author.id}>`)
     .setTimestamp()
     .setColor("RANDOM")
     channel.send(embed)
