@@ -16,7 +16,7 @@ if(message1 == "disable") {
 else {
     let role = message.mentions.roles.first()
     db.set(`role_${message.guild.id}`, role.id)
-    message.channel.send(new Discord.MessageEmbed().setDescription(`Auto role setted to <@&${role.id}>`).setAuthor(message.author.username, message.author.avatarURL().setColor('RANDOM')))
+    message.channel.send(new Discord.MessageEmbed().setDescription(`Auto role setted to <@&${role.id}>`).setAuthor(message.author.username, message.author.avatarURL()).setColor('RANDOM'));
 }
 };
 module.exports.help = {
