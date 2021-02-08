@@ -15,7 +15,6 @@ db.set(`memberremovemsg_${message.guild.id}`, msg)
 const embed2 = new Discord.MessageEmbed()
 .setColor('RANDOM')
 .setDescription(`Leave message is setted to ${msg}`)
-.setAuthor(message.author.avatarURL(), message.author.username)
 message.channel.send(embed2)
 }
 }
