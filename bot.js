@@ -199,6 +199,7 @@ channel.send(embed)
 });
 client.on('messageUpdate', async(oldMessage, newMessage) => {
 if(oldMessage.author.id == client.user.id) return;
+if(oldMessage.content == newMessage.content) return;
     const channel = oldMessage.guild.channels.cache.get(db.fetch(`log_${oldMessage.guild.id}`));
     if(!channel) return;
     let embed = new Discord.MessageEmbed()
